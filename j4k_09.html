@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Playing with the DOM</title>
+</head>
+
+<body>
+  <h1 id="main-heading">Hello world!</h1>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="j4k_09.js"></script>
+  <script>
+    $("h1").text("My Friends");
+    var friends = ["Hewey", "Dewey", "Lewey"];
+
+    for (var i = 0; i < 3; i++) {
+      $("body").append('<p class ="friendList">' + friends[i] + '</p>');
+      $("p").hide();
+      $(".friendList").fadeIn(1000);
+    };
+
+    $(".friendList").append(" smells");
+
+    var flashHead = $("h1");
+    for (var i = 0; i < 5; i++) {
+      flashHead.fadeOut(250 * i);
+      flashHead.fadeIn(250 * i);
+    };
+    $(".friendList").fadeOut(1000).delay(2000).fadeIn(1000);
+    $("h1").fadeTo(2000, 0.5);
+  </script>
+
+</body>
+
+</html>
+
+<!--
+$("body").append("<p>" + friends[i] + "</p>");
+
+$("#friendList").hide();
+$("#friendList").fadeIn(1000);
+
+
+
+-->

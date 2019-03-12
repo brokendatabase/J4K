@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Interactive Programming</title>
+</head>
+
+<body>
+  <h1 id="heading">Hello world!</h1>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    var leftOffset = 0;
+
+    var moveHeading = function() {
+      $("#heading").offset({
+        left: leftOffset
+      });
+      leftOffset += 5;
+
+      if (leftOffset > 200) {
+        leftOffset = 0;
+      }
+    };
+    setInterval(moveHeading, 50);
+  </script>
+
+
+</body>
+
+</html>
+
+<!--
+$("body").append("<p>" + friends[i] + "</p>");
+
+$("#friendList").hide();
+$("#friendList").fadeIn(1000);
+
+
+
+-->

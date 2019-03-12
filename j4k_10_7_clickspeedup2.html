@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Interactive Programming</title>
+</head>
+
+<body>
+  <h1 style="position:absolute; margin:0; top: 0; left:0" id="heading">Hello world!</h1>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    var leftOffset = 0;
+    var topOffset = 0;
+
+
+    function moveHeading() {
+      $("#heading").offset({
+        left: leftOffset,
+        top: topOffset,
+      });
+      // move to the right
+      if (leftOffset < 200) {
+        leftOffset += 1;
+        // move down
+      } else if (leftOffset >= 200) {
+        topOffset += 1;
+      };
+      // move to the left
+      if (topOffset >= 200 && leftOffset > 0) {
+        leftOffset -= 2;
+        // move up
+      } else if (leftOffset <= 0 && topOffset >= 0) {
+        leftOffset -= 1;
+        topOffset -= 1;
+      };
+    };
+    var count = 0;
+    var speed = 20;
+    var movement = setInterval(moveHeading, speed);
+
+    function animationSpeedup(event) {
+      // for some reason this has to be declared before the entire speedup thing
+      clearInterval(movement);
+      count++;
+      speed /= 2;
+      // change the heading after three clicks
+      if (count >= 3) {
+        $("#heading").text("You Win.");
+        // inverse logic: intil the statement above is reached continue with that (how is this not affected by clearInterval above is beyond me)
+      } else {
+        movement = setInterval(moveHeading, speed);
+      }
+    };
+
+    $("#heading").click(animationSpeedup);
+  </script>
+
+
+</body>
+
+</html>
+
+<!--
+WORKING SCRIPT:
+function moveHeading() {
+  $("#heading").offset({
+    left: leftOffset,
+    top: topOffset,
+  });
+
+  if (leftOffset < 200) {
+    leftOffset += 1;
+  } else if (leftOffset >= 200) {
+    topOffset += 1;
+  };
+  if (topOffset >= 200) {
+    leftOffset -= 2;
+  };
+  if (leftOffset < 1) {
+    topOffset -= 200;
+  };
+
+};
+setInterval(moveHeading, 5);
+-->

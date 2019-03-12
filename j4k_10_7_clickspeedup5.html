@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Interactive Programming</title>
+</head>
+
+<body>
+  <h1 style="position:absolute; margin:0; top: 0; left:0" id="heading">Hello world!</h1>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    var leftOffset = 0;
+    var topOffset = 0;
+
+
+    function moveHeading() {
+      $("#heading").offset({
+        left: leftOffset,
+        top: topOffset,
+      });
+
+      if (leftOffset < 200) {
+        leftOffset += 1;
+      } else if (leftOffset >= 200) {
+        topOffset += 1;
+      };
+      if (topOffset >= 200 && leftOffset > 0) {
+        leftOffset -= 2;
+      } else if (leftOffset <= 0 && topOffset >= 0) {
+        leftOffset -= 1;
+        topOffset -= 1;
+      };
+    };
+    var speed = 200;
+    var movement = setInterval(moveHeading, speed);
+    var count = 0;
+
+
+    function animationSpeedup() {
+      speed /= 2;
+      count++;
+      if (count >= 3) {
+        clearInterval(movement);
+        $("#heading").text("You .");
+
+      } else {
+
+        setInterval(moveHeading, speed);
+
+      }
+    };
+    $("#heading").click(animationSpeedup);
+  </script>
+
+
+</body>
+
+</html>
+
+<!--
+WORKING SCRIPT:
+function moveHeading() {
+  $("#heading").offset({
+    left: leftOffset,
+    top: topOffset,
+  });
+
+  if (leftOffset < 200) {
+    leftOffset += 1;
+  } else if (leftOffset >= 200) {
+    topOffset += 1;
+  };
+  if (topOffset >= 200) {
+    leftOffset -= 2;
+  };
+  if (leftOffset < 1) {
+    topOffset -= 200;
+  };
+
+};
+setInterval(moveHeading, 5);
+-->
