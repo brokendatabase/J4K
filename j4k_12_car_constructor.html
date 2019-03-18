@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+
+<head>
+  <title>Cars</title>
+  <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+  <!-- Create a car constructor that gives each car a set of coordinates-->
+  <script>
+    var Car = function(x, y) {
+      this.x = x;
+      this.y = y;
+    };
+    var drawCar = function(car) {
+      // this is a string containing HTML pointing to an image of a car
+      var carHtml = '<img src = "http://nostarch.com/images/car.png">';
+      // we pass carHtml to the $ function which converts it from a string to jQuery element
+      var carElement = $(carHtml); // this variable now holds the information about our img tag
+      // here we use a css method on the carElement variable to set the position of the car image
+      carElement.css({
+        position: "absolute",
+        left: car.x,
+        top: car.y // this is similar to offset method, which apparently doesn't work well with multiple elements
+      });
+      // here we use jQuery to append the carElement to the body element of the web page
+      $("body").append(carElement);
+    };
+    var tesla = new Car(10, 20);
+    var nissan = new Car(100, 200);
+    drawCar(tesla);
+    drawCar(nissan);
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

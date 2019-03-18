@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+
+<head>
+  <title>Cars</title>
+
+  <!-- Create a car constructor that gives each car a set of coordinates-->
+
+</head>
+
+<body>
+  <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+  <script>
+    var Car = function(x, y) {
+      this.x = x;
+      this.y = y;
+    };
+    // after creating the Car constructor we add a new method called draw to Car.prototype
+    Car.prototype.draw = function() {
+      // We create an HTML string and save it as carHtml
+      var carHtml = '<img src = "http://nostarch.com/images/car.png">';
+      // We create a jQuery element representing this HTML, but we save it as a property of the object by assigning it to this.carElement
+      this.carElement = $(carHtml);
+      // We use this.x and this.y to set the coordinates of the top-left corner of the current car image
+      this.carElement.css({
+        position: "absolute",
+        left: this.x,
+        top: this.y // this is similar to offset method, which apparently doesn't work well with multiple elements
+      });
+      // here we use jQuery to append the carElement to the body element of the web page
+      $("body").append(this.carElement);
+    };
+
+    Car.prototype.moveRIght = function() {
+      this.x += 5;
+
+      this.carElement.css({
+        left: this.x,
+        top: this.y
+      });
+    };
+    var tesla = new Car(20, 20);
+    var nissan = new Car(100, 200);
+    tesla.draw();
+    nissan.draw();
+  </script>
+  <p>Why should this script be inside body?</p>
+
+</body>
+
+</html>
